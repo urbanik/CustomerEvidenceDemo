@@ -4,6 +4,7 @@ import com.inloopx.customerevidence.dto.CustomerDto;
 import com.inloopx.customerevidence.entity.Customer;
 import com.inloopx.customerevidence.repository.CustomerRepository;
 import com.inloopx.customerevidence.structuremapper.CustomerMapper;
+import io.swagger.annotations.Api;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Api(value = "Customer CRUD service")
 public class CustomerResource extends BaseResource<Customer, CustomerDto>{
 
     public CustomerResource(){super(Customer.class);}
