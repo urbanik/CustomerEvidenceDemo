@@ -3,12 +3,12 @@ package com.inloopx.customerevidence.resource;
 import com.inloopx.customerevidence.exception.EntityNotFound;
 import com.inloopx.customerevidence.repository.BaseRepository;
 import com.inloopx.customerevidence.structuremapper.BaseMapper;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
-import javax.ejb.Stateless;
 import javax.validation.Valid;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +31,11 @@ public abstract class BaseResource<E, D> { // Entity, Dto
     public abstract BaseMapper getMapper();
 
     @POST
+    @ApiOperation(value = "Insert data of created entity", notes = "Return json data of created entity to client")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+            @ApiResponse(code = 400, message = "When entity attributes are incorrect or null")
+    })
     public D post(@Valid D dto) {
 
         E entity = (E) getMapper().dtoToEntity(dto);
@@ -42,6 +47,11 @@ public abstract class BaseResource<E, D> { // Entity, Dto
 
     @GET
     @Path("/{id}")
+    @ApiOperation(value = "Retrieve data of entity with given ID", notes = "Return json data of the entity to client")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+            @ApiResponse(code = 404, message = "When entity with given ID is not found")
+    })
     public D get(@PathParam("id") int id) {
 
         Optional<E> maybeEntity = getRepository().getById(id);
@@ -58,6 +68,10 @@ public abstract class BaseResource<E, D> { // Entity, Dto
     }
 
     @GET
+    @ApiOperation(value = "Retrieve all records (with data) of entity", notes = "Return json data of the entity to client")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+    })
     public List<D> getAll() {
         List<D> listDto = new LinkedList<>();
         List<E> listEntity = getRepository().getAll();
@@ -72,6 +86,12 @@ public abstract class BaseResource<E, D> { // Entity, Dto
 
     @PUT
     @Path("/{id}")
+    @ApiOperation(value = "Update data of entity with given ID", notes = "Return json data of updated entity to client")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful update"),
+            @ApiResponse(code = 400, message = "When entity attributes are incorrect or null"),
+            @ApiResponse(code = 404, message = "When entity with given ID is not found")
+    })
     public D update(@PathParam("id") int id, @Valid D dto) {
 
         Optional<E> maybeEntity = getRepository().getById(id);
@@ -90,7 +110,12 @@ public abstract class BaseResource<E, D> { // Entity, Dto
 
     @DELETE
     @Path("/{id}")
-    public void delete(@PathParam("id") int id) {
+    @ApiOperation(value = "Update data of entity with given ID", notes = "Return json data of updated entity to client")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+            @ApiResponse(code = 404, message = "When entity with given ID is not found")
+    })
+            public void delete(@PathParam("id") int id) {
 
         Optional<E> maybeEntity = getRepository().getById(id);
 
