@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="CustomerEvidence:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
+    <output-path>$PROJECT_DIR$/../customerevidence/target</output-path>
     <properties id="maven-jee-properties">
       <options>
         <module>CustomerEvidence</module>
