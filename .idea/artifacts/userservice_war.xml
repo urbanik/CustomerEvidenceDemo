@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="userservice-1.0-SNAPSHOT.war">
+    <root id="archive" name="userservice.war">
       <element id="artifact" artifact-name="userservice:war exploded" />
     </root>
   </artifact>
