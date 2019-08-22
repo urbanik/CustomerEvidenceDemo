@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jwtenizr">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/jwtenizr.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/jwtenizr.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

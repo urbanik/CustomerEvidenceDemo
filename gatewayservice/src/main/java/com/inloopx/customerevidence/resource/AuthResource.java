@@ -1,9 +1,11 @@
 package com.inloopx.customerevidence.resource;
 
+import com.inloopx.userservice.dto.UserDto;
 import io.swagger.annotations.Api;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,23 +21,22 @@ import javax.ws.rs.core.Response;
 @Api(value = "Login and register endpoints for user")
 public class AuthResource {
 
-@EJB
-RestClient restClient;
+    @EJB
+    RestClient restClient;
 
     @POST
     @Path("/login")
-    public Response login() {
-//        restClient.callOtherModule(HttpMethod.POST,body,url,Class.class,queryParams);
+    public Response login(@Valid UserDto userDto) {
 
-        return null;
+        return restClient.callOtherModule("http://localhost:8080/userservice/api/users", "login", userDto);
 
     }
 
     @POST
     @Path("/register")
-    public Response register() {
+    public Response register(@Valid UserDto userDto) {
 
-    return null;
+        return restClient.callOtherModule("http://localhost:8080/userservice/api/users", "register", userDto);
 
     }
 

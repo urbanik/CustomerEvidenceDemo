@@ -1,41 +1,50 @@
 package com.inloopx.userservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotNull;
 
-public class UserDto{
+public class UserDto {
 
-  @NotNull
-  private String username;
+    @NotNull
+    private String username;
 
-  @NotNull
-  private String password;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 
-  private RoleDto role;
-
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    private RoleDto role;
 
 
-  public String getPassword() {
-    return password;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public RoleDto getRole() {
-    return role;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setRole(RoleDto role) {
-    this.role = role;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RoleDto getRole() {
+        return role;
+    }
+
+    public void setRole(RoleDto role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
+    }
 }
