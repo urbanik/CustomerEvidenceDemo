@@ -1,5 +1,7 @@
 package com.inloopx.customerevidence.exceptionmapper;
 
+import com.inloopx.customerevidence.exception.ErrorResponse;
+
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -18,6 +20,9 @@ public class GeneralExceptionMapper implements ExceptionMapper<Exception> {
 
         LOG.log(Level.SEVERE, exception.toString(), exception);
 
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setErrorMessage("Internal server error!");
+        errorResponse.setErrorDescription(exception.getMessage());
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity("Internal server error!")
                 .build();

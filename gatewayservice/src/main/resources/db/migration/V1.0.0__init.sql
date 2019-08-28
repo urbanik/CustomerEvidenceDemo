@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`PHOTOS`
+CREATE TABLE IF NOT EXISTS  `PHOTOS`
 (
     `ID`      INT  NOT NULL AUTO_INCREMENT,
     `PICTURE` BLOB NULL,
@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`PHOTOS`
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`CUSTOMERS`
+CREATE TABLE IF NOT EXISTS  `CUSTOMERS`
 (
     `ID`          INT         NOT NULL AUTO_INCREMENT,
     `NAME`        VARCHAR(45) NOT NULL,
@@ -18,13 +18,13 @@ CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`CUSTOMERS`
     INDEX `fk_CUSTOMERS_PHOTOS1_idx` (`FK_PHOTO_ID` ASC) VISIBLE,
     CONSTRAINT `fk_CUSTOMERS_PHOTOS1`
         FOREIGN KEY (`FK_PHOTO_ID`)
-            REFERENCES `customerEvidenceDb`.`PHOTOS` (`ID`)
+            REFERENCES  `PHOTOS` (`ID`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`USERS`
+CREATE TABLE IF NOT EXISTS  `USERS`
 (
     `ID`             INT         NOT NULL AUTO_INCREMENT,
     `USERNAME`       VARCHAR(45) NOT NULL,
@@ -35,13 +35,13 @@ CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`USERS`
     INDEX `fk_USERS_CUSTOMERS1_idx` (`FK_CUSTOMER_ID` ASC) VISIBLE,
     CONSTRAINT `fk_USERS_CUSTOMERS1`
         FOREIGN KEY (`FK_CUSTOMER_ID`)
-            REFERENCES `customerEvidenceDb`.`CUSTOMERS` (`ID`)
+            REFERENCES  `CUSTOMERS` (`ID`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`ROLES`
+CREATE TABLE IF NOT EXISTS  `ROLES`
 (
     `ID`         INT         NOT NULL AUTO_INCREMENT,
     `NAME`       VARCHAR(45) NOT NULL,
@@ -50,13 +50,13 @@ CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`ROLES`
     INDEX `fk_ROLE_USERS1_idx` (`FK_USER_ID` ASC) VISIBLE,
     CONSTRAINT `fk_ROLE_USERS1`
         FOREIGN KEY (`FK_USER_ID`)
-            REFERENCES `customerEvidenceDb`.`USERS` (`ID`)
+            REFERENCES  `USERS` (`ID`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`ORDERS`
+CREATE TABLE IF NOT EXISTS  `ORDERS`
 (
     `ID`             INT           NOT NULL AUTO_INCREMENT,
     `PRICE`          DECIMAL(6, 2) NOT NULL,
@@ -67,13 +67,13 @@ CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`ORDERS`
     INDEX `fk_ORDERS_CUSTOMERS1_idx` (`FK_CUSTOMER_ID` ASC) VISIBLE,
     CONSTRAINT `fk_ORDERS_CUSTOMERS1`
         FOREIGN KEY (`FK_CUSTOMER_ID`)
-            REFERENCES `customerEvidenceDb`.`CUSTOMERS` (`ID`)
+            REFERENCES  `CUSTOMERS` (`ID`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`PRODUCTS`
+CREATE TABLE IF NOT EXISTS  `PRODUCTS`
 (
     `ID`             INT           NOT NULL AUTO_INCREMENT,
     `NAME`           VARCHAR(45)   NOT NULL,
@@ -87,13 +87,13 @@ CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`PRODUCTS`
     INDEX `fk_PRODUCTS_PHOTOS1_idx` (`FK_PHOTO_ID` ASC) VISIBLE,
     CONSTRAINT `fk_PRODUCTS_PHOTOS1`
         FOREIGN KEY (`FK_PHOTO_ID`)
-            REFERENCES `customerEvidenceDb`.`PHOTOS` (`ID`)
+            REFERENCES  `PHOTOS` (`ID`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`ORDER_ITEM`
+CREATE TABLE IF NOT EXISTS  `ORDER_ITEM`
 (
     `ID`             INT           NOT NULL AUTO_INCREMENT,
     `COUNT`          INT           NOT NULL,
@@ -104,12 +104,12 @@ CREATE TABLE IF NOT EXISTS `customerEvidenceDb`.`ORDER_ITEM`
     INDEX `fk_ORDER_ITEM_ORDERS1_idx` (`FK_ORDER_ID` ASC) VISIBLE,
     CONSTRAINT `fk_ORDER_ITEM_PRODUCTS`
         FOREIGN KEY (`FK_PRODUCT_ID`)
-            REFERENCES `customerEvidenceDb`.`PRODUCTS` (`ID`)
+            REFERENCES  `PRODUCTS` (`ID`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `fk_ORDER_ITEM_ORDERS1`
         FOREIGN KEY (`FK_ORDER_ID`)
-            REFERENCES `customerEvidenceDb`.`ORDERS` (`ID`)
+            REFERENCES  `ORDERS` (`ID`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 )

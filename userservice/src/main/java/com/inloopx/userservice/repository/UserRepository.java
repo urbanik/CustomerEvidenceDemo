@@ -3,7 +3,6 @@ package com.inloopx.userservice.repository;
 import com.inloopx.userservice.entity.*;
 import com.inloopx.userservice.exception.ViolatedBusinessRule;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,7 +14,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -148,7 +146,7 @@ public class UserRepository extends BaseRepository<User> {
                 .fetchOne();
 
         Token newToken = token;
-        newToken.setAccessToken(createAccessJWT(Integer.toString(user.getId()), user.getUsername(), user.getRole().getName(), 60000));
+        newToken.setAccessToken(createAccessJWT(Integer.toString(user.getId()), user.getUsername(), user.getRole().getName(), 600000));
         tokenRepository.updateModel(token, newToken);
         return newToken;
 
@@ -193,6 +191,7 @@ public class UserRepository extends BaseRepository<User> {
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("groups", Arrays.asList(role));
+        claims.put("upn", subject);
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.RS256;
 
         long nowMillis = System.currentTimeMillis();
@@ -215,7 +214,10 @@ public class UserRepository extends BaseRepository<User> {
             e.printStackTrace();
         }
 
+        HashMap<String, Object> headers = new HashMap<>();
+        headers.put("typ","JWT");
         JwtBuilder builder = Jwts.builder()
+                .setHeader(headers)
                 .setId(id)
                 .setIssuedAt(now)
                 .setIssuer(issuer)
@@ -252,15 +254,6 @@ public class UserRepository extends BaseRepository<User> {
 
         }
         return sb.toString();
-    }
-
-
-    public Claims decodeJWT(String jwt) {
-        //This line will throw an exception if it is not a signed JWS (as expected)
-        Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(privateKey))
-                .parseClaimsJws(jwt).getBody();
-        return claims;
     }
 
     @Override

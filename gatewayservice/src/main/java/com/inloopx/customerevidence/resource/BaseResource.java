@@ -37,7 +37,6 @@ public abstract class BaseResource<E, D> { // Entity, Dto
 //    private JsonWebToken callerPrincipal;
 
     @POST
-    @RolesAllowed({"admin", "user"})
     @ApiOperation(value = "Insert data of created entity", notes = "Return json data of created entity to client")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Successful"),
@@ -54,7 +53,6 @@ public abstract class BaseResource<E, D> { // Entity, Dto
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({"admin"})
     @ApiOperation(value = "Retrieve data of entity with given ID", notes = "Return json data of the entity to client")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Successful"),
@@ -76,7 +74,6 @@ public abstract class BaseResource<E, D> { // Entity, Dto
     }
 
     @GET
-    @RolesAllowed("admin")
     @ApiOperation(value = "Retrieve all records (with data) of entity", notes = "Return json data of the entity to client")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Successful"),
@@ -95,7 +92,6 @@ public abstract class BaseResource<E, D> { // Entity, Dto
 
     @PUT
     @Path("/{id}")
-    @RolesAllowed({"admin", "user"})
     @ApiOperation(value = "Update data of entity with given ID", notes = "Return json data of updated entity to client")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Successful update"),
@@ -120,7 +116,6 @@ public abstract class BaseResource<E, D> { // Entity, Dto
 
     @DELETE
     @Path("/{id}")
-    @RolesAllowed("admin")
     @ApiOperation(value = "Update data of entity with given ID", notes = "Return json data of updated entity to client")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Successful"),

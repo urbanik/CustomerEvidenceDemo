@@ -6,6 +6,7 @@ import com.inloopx.customerevidence.repository.CustomerRepository;
 import com.inloopx.customerevidence.structuremapper.CustomerMapper;
 import io.swagger.annotations.Api;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Api(value = "Customer CRUD service")
+@RolesAllowed({"admin"})
 public class CustomerResource extends BaseResource<Customer, CustomerDto>{
 
     public CustomerResource(){super(Customer.class);}

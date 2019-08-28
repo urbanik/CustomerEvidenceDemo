@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author inloopx.com
  */
-@LoginConfig(authMethod = "MP-JWT", realmName = "MP-JWT")
+@LoginConfig(authMethod = "MP-JWT")
 @ApplicationPath("/api")
 @DeclareRoles({"user", "admin"})
 public class JAXRSConfiguration extends Application {

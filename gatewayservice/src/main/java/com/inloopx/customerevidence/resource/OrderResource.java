@@ -6,6 +6,7 @@ import com.inloopx.customerevidence.repository.OrderRepository;
 import com.inloopx.customerevidence.structuremapper.OrderMapper;
 import io.swagger.annotations.Api;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Api(value = "Order CRUD service")
+@RolesAllowed({"admin", "user"})
 public class OrderResource extends BaseResource<Order, OrderDto> {
 
     public OrderResource() {
