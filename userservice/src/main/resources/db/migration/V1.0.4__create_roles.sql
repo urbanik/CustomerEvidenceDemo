@@ -1,2 +1,2 @@
-INSERT INTO `userServiceDb`.ROLES(NAME) VALUES ('admin');
-INSERT INTO `userServiceDb`.ROLES(NAME) VALUES ('user');
+INSERT INTO ROLES(NAME) VALUES ('admin');
+INSERT INTO ROLES(NAME) VALUES ('user');

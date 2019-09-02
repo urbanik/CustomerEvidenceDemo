@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import java.util.LinkedList;
@@ -31,10 +30,6 @@ public abstract class BaseResource<E, D> { // Entity, Dto
     public abstract BaseRepository getRepository();
 
     public abstract BaseMapper getMapper();
-
-
-//    @Inject
-//    private JsonWebToken callerPrincipal;
 
     @POST
     @ApiOperation(value = "Insert data of created entity", notes = "Return json data of created entity to client")

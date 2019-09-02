@@ -2,9 +2,11 @@ package com.inloopx.customerevidence.resource;
 
 import com.inloopx.userservice.dto.UserDto;
 import io.swagger.annotations.Api;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -24,11 +26,15 @@ public class AuthResource {
     @EJB
     RestClient restClient;
 
+    @ConfigProperty(name = "user-service-base-url")
+    @Inject
+    String userServiceBaseUrl;
+
     @POST
     @Path("/login")
     public Response login(@Valid UserDto userDto) {
 
-        return restClient.callOtherModule("http://localhost:8080/userservice/api/users", "login", userDto);
+        return restClient.callOtherModule(userServiceBaseUrl + "userservice/api/users", "login", userDto);
 
     }
 
@@ -36,7 +42,7 @@ public class AuthResource {
     @Path("/register")
     public Response register(@Valid UserDto userDto) {
 
-        return restClient.callOtherModule("http://localhost:8080/userservice/api/users", "register", userDto);
+        return restClient.callOtherModule(userServiceBaseUrl + "userservice/api/users", "register", userDto);
 
     }
 

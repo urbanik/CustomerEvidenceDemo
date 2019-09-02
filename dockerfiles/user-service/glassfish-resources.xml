@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC
+        "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
+        "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+
+    <jdbc-resource pool-name="userServicePool"
+                   jndi-name="jdbc/userservice"/>
+
+    <jdbc-connection-pool datasource-classname="com.mysql.cj.jdbc.MysqlDataSource" name="userServicePool" res-type="javax.sql.DataSource">
+        <property name="password" value="dbpass"></property>
+        <property name="databaseName" value="service"></property>
+        <property name="serverName" value="db"></property>
+        <property name="user" value="dbuser"></property>
+        <property name="portNumber" value="3306"></property>
+        <property name="serverTimezone" value="UTC"></property>
+        <property name="useSSL" value="false"></property>
+        <property name="allowPublicKeyRetrieval" value="true"></property>
+    </jdbc-connection-pool>
+</resources>

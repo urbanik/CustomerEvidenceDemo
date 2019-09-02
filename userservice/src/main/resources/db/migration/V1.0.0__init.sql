@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `userServiceDb`.`USERS`
+CREATE TABLE IF NOT EXISTS USERS
 (
     `ID`             INT         NOT NULL AUTO_INCREMENT,
     `USERNAME`       VARCHAR(45) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `userServiceDb`.`USERS`
 )
     ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `userServiceDb`.`ROLES`
+CREATE TABLE IF NOT EXISTS ROLES
                     (
                         `ID`         INT         NOT NULL AUTO_INCREMENT,
                         PRIMARY KEY (`ID`)
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `userServiceDb`.`ROLES`
     ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `userServiceDb`.`TOKENS`
+CREATE TABLE IF NOT EXISTS TOKENS
 (
     `ID`         INT         NOT NULL AUTO_INCREMENT,
     `ACCESS_TOKEN`       VARCHAR(255) NOT NULL,

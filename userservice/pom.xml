@@ -17,6 +17,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <outputDirectory>/Users/user-tmp/Downloads/payara5/glassfish/domains/domain1/autodeploy</outputDirectory>
+                    <outputDirectory>/Users/user-tmp/Documents/Projects/customerevidenceapp/dockerfiles/user-service</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <executions>
                     <execution>
