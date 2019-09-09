@@ -31,6 +31,19 @@ public class Product extends BaseEntity {
   @JoinColumn(name = "FK_PHOTO_ID")
   private Photo photo;
 
+  public Product() {
+  }
+
+
+
+  public Product(@NotNull String name, @NotNull String description, @NotNull String code, @NotNull double price, @NotNull double priceWithVat) {
+    this.name = name;
+    this.description = description;
+    this.code = code;
+    this.price = price;
+    this.priceWithVat = priceWithVat;
+  }
+
   public String getName() {
     return name;
   }

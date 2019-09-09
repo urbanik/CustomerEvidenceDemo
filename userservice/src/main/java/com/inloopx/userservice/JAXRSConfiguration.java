@@ -27,7 +27,6 @@ public class JAXRSConfiguration extends Application {
 
         classes.add(UserResource.class);
 
-//        classes.retainAll(superClasses);
         return classes;
     }
 }

@@ -2,6 +2,7 @@ package com.inloopx.customerevidence.repository;
 
 import com.inloopx.customerevidence.entity.Customer;
 import com.inloopx.customerevidence.entity.Order;
+import com.inloopx.customerevidence.exception.ViolatedBusinessRule;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -44,7 +45,7 @@ public class CustomerRepository extends BaseRepository<Customer> {
 
         for (Order order : orderRepository.getAll()) {
             if(order.getCustomer().getId() == entityToDelete.getId()){
-                throw new UnsupportedOperationException();
+                throw new ViolatedBusinessRule("Can not delete entity, because it is part of another entity!");
             }
         }
         deleteModel(entityToDelete);

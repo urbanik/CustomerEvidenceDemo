@@ -14,6 +14,14 @@ public class UserDto {
 
     private RoleDto role;
 
+    public UserDto(@NotNull String username, String password, RoleDto role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public UserDto() {
+    }
 
     public String getUsername() {
         return username;

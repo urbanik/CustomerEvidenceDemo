@@ -6,6 +6,13 @@ public class RoleDto {
 
   private String name;
 
+  public RoleDto() {
+  }
+
+  public RoleDto(String name) {
+    this.name = name;
+  }
+
   public int getId() {
     return id;
   }

@@ -20,6 +20,14 @@ public class Order extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order", orphanRemoval = true)
     private List<OrderItem> orderItems;
 
+    public Order() {
+    }
+
+    public Order(Customer customer, List<OrderItem> orderItems) {
+        this.customer = customer;
+        this.orderItems = orderItems;
+    }
+
     public double getPrice() {
         return price;
     }

@@ -35,6 +35,12 @@ public class OrderItem {
   @NotNull
   private Order order;
 
+  public OrderItem() {
+  }
+
+  public OrderItem(@NotNull Product product) {
+    this.product = product;
+  }
 
   public int getId() {
     return id;
