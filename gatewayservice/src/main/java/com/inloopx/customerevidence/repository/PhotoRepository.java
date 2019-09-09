@@ -18,13 +18,8 @@ public class PhotoRepository extends BaseRepository<Photo>{
     }
 
     @Override
-    public Photo saveModel(Photo photo) {
-
-        return super.saveModel(photo);
-    }
-
-    @Override
     public Photo updateModel(Photo dbEntity, Photo requestEntity) {
         return null;
     }
+
 }
