@@ -4,13 +4,16 @@ import com.inloopx.customerevidence.entity.Customer;
 import com.inloopx.customerevidence.entity.Order;
 import com.inloopx.customerevidence.entity.OrderItem;
 import com.inloopx.customerevidence.entity.Product;
+import com.inloopx.customerevidence.exception.ErrorResponse;
 import com.inloopx.customerevidence.repository.CustomerRepository;
 import com.inloopx.customerevidence.repository.OrderRepository;
 import com.inloopx.customerevidence.repository.ProductRepository;
 import com.inloopx.userservice.dto.RoleDto;
 import com.inloopx.userservice.dto.UserDto;
-import com.inloopx.userservice.entity.User;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.ejb.EJB;
@@ -54,6 +57,11 @@ public class AuthResource {
 
     @POST
     @Path("/login")
+    @ApiOperation(value = "Login", notes = "Return json data of user, access token, refresh token")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+            @ApiResponse(code = 409, message = "Wrong input",response = ErrorResponse.class)
+    })
     public Response login(@Valid UserDto userDto) {
 
         return restClient.callOtherModule(userServiceBaseUrl + "userservice/api/users", "login", userDto);
@@ -61,6 +69,11 @@ public class AuthResource {
     }
 
     @POST
+    @ApiOperation(value = "Registration", notes = "Return json data of created user")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+            @ApiResponse(code = 400, message = "Wrong input",response = ErrorResponse.class)
+    })
     @Path("/register")
     public Response register(@Valid UserDto userDto) {
 
@@ -69,6 +82,10 @@ public class AuthResource {
     }
 
     @POST
+    @ApiOperation(value = "Generate products and customers", notes = "Return json data")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+    })
     @Path("generateProductsAndCustomers/{count}")
     public void generateProductsAndCustomers(@PathParam("count") int count) {
 
@@ -78,21 +95,19 @@ public class AuthResource {
     }
 
     @POST
-    @Path("generateUsersAndOrders/{count}")
-    public void generateUsersAndOrders(@PathParam("count") int count) {
+    @ApiOperation(value = "Generate orders", notes = "Return json data")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Successful"),
+    })
+    @Path("generateOrders/{count}")
+    public void generateOrders(@PathParam("count") int count) {
 
-        generateOrders(count);
-
-        RoleDto adminRole = new RoleDto("admin");
-        UserDto admin = new UserDto("admin", "admin", adminRole);
-        restClient.callOtherModule(userServiceBaseUrl + "userservice/api/users", "register", admin);
-
-        RoleDto userRole = new RoleDto("user");
-        UserDto user = new UserDto("user", "user", userRole);
-        restClient.callOtherModule(userServiceBaseUrl + "userservice/api/users", "register", user);
+        for (int i = 0; i < count; i++)
+        {
+            orderRepository.saveModel(orderFactory(count));
+        }
 
     }
-
 
     public void generateProducts(int count){
 
@@ -107,14 +122,6 @@ public class AuthResource {
         for (int i = 0; i < count; i++)
         {
             customerRepository.saveModel(customerFactory());
-        }
-    }
-
-    public void generateOrders(int count){
-
-        for (int i = 0; i < count; i++)
-        {
-            orderRepository.saveModel(orderFactory(count));
         }
     }
 

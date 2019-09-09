@@ -10,10 +10,19 @@ Maven
 ```
 ### Installation
 For running application on your local machine follow these steps:
-* Pull project to your local machine
-* Build docker images (database, gatwewayservice and userservice) and then docker compose in dockerfiles folder
+* 1 - Pull project to your local machine
+* 2 - Build microservices (parent, userservice, gatewayservice) for fresh .wars
+* 3 - Build docker images (database, gatwewayservice and userservice) and then docker compose in dockerfiles folder
 
-## Running the test
+## Tests
+You can test this application via Postman or Swagger. Firstly you have to register new user in users/register endpoint, then you have to login (users/login) to receive access token, which give you authorization to other endpoints like customers, products, orders...
+### Postman
+Postman request collection is available in the root folder (GatewayService.postman_collection.json)
+### Swagger
+On localhost:
+```
+localhost:8080/customerevidence/api/apiee/
+```
 
 ### Authors
 **Lukas Urbanik** Inloopx by Avast
