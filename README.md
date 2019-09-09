@@ -4,7 +4,7 @@ REST API application backend for customers, products and orders evidence. Projec
 ## Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-###Prerequisites
+### Built with
 ```
 Maven
 ```
@@ -12,3 +12,8 @@ Maven
 For running application on your local machine follow these steps:
 * Pull project to your local machine
 * Build docker images (database, gatwewayservice and userservice) and then docker compose in dockerfiles folder
+
+## Running the test
+
+### Authors
+**Lukas Urbanik** Inloopx by Avast
