@@ -20,7 +20,10 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
                 <configuration>
-                    <outputDirectory>/Users/user-tmp/Downloads/payara5.191/glassfish/domains/domain1/autodeploy</outputDirectory>
+                    <outputDirectory>/Users/user-tmp/Documents/Projects/customerevidenceapp/dockerfiles/user-service</outputDirectory>
+                    <!--
+                    localhost autodeployment
+                    <outputDirectory>/Users/user-tmp/Downloads/payara5.191/glassfish/domains/domain1/autodeploy</outputDirectory>-->
                 </configuration>
             </plugin>
             <plugin>

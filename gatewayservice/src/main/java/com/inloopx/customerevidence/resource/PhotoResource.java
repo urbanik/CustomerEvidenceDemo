@@ -10,6 +10,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -26,7 +27,7 @@ import java.util.HashSet;
 
 @Path("/images")
 @Stateless
-//@RolesAllowed({"admin", "user"})
+@RolesAllowed({"admin", "user"})
 public class PhotoResource {
 
     @EJB
