@@ -10,11 +10,18 @@
         <module name="CustomerEvidence" />
         <module name="gatewayservice" />
       </profile>
+      <profile name="Annotation profile for gatling-test" enabled="true">
+        <sourceOutputDir name="../../gatling-scala/gatling-test/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../gatling-scala/gatling-test/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gatling-test" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CustomerEvidence" target="1.8" />
       <module name="customerevidenceapp" target="1.8" />
       <module name="gatewayservice" target="1.8" />
+      <module name="gatling-test" target="1.8" />
       <module name="userservice" target="1.8" />
     </bytecodeTargetLevel>
   </component>

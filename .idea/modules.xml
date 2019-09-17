@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/CustomerEvidence.iml" filepath="$PROJECT_DIR$/CustomerEvidence.iml" />
       <module fileurl="file://$PROJECT_DIR$/customerevidenceapp.iml" filepath="$PROJECT_DIR$/customerevidenceapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/gatewayservice/gatewayservice.iml" filepath="$PROJECT_DIR$/gatewayservice/gatewayservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gatling-test/gatling-test.iml" filepath="$PROJECT_DIR$/gatling-test/gatling-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/userservice/userservice.iml" filepath="$PROJECT_DIR$/userservice/userservice.iml" />
     </modules>
   </component>
